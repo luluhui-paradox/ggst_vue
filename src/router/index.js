@@ -1,12 +1,13 @@
 import { createRouter,createWebHashHistory } from "vue-router";
 import HelloWorld from '../components/HelloWorld.vue';
-import Top100 from '../components/Top100.vue';
-import UserDetail from '../components/UserDetail.vue';
+import Top100 from '../views/Top100.vue';
+import UserDetail from '../views/UserDetail.vue';
+import UserSearchResult from '../views/UserSearchResult.vue';
 
 const routes = [
     {
         path:'/home',
-        name:HelloWorld,
+        name:'HelloWorld',
         component:HelloWorld
     },
     {
@@ -15,13 +16,18 @@ const routes = [
     },
     {
         path:'/top100',
-        name:Top100,
+        name:'Top100',
         component:Top100
     },
     {
         path:'/userDetail',
-        name:UserDetail,
+        name:'UserDetail',
         component:UserDetail
+    },
+    {
+        path:'/userSearchResult',
+        name:'UserSearchResult',
+        component:UserSearchResult
     }
     
 ]

@@ -33,18 +33,18 @@
     <div style="flex-grow: 1;">
       
     </div>
-    <el-menu-item index="5">
-      
-        <el-form :inline="true" :model="formInline">
-          <el-form-item>
+    <el-row type="flex" justify="center" align="middle" class="wwc_last_item">
+    
+        <el-form :inline="true" :model="formInline" >
+          <el-form-item >
             <el-input v-model="formInline.username" placeholder="GG PLAYER" clearable />
           </el-form-item>
-          <el-form-item>
+          <el-form-item >
             <el-button type="primary" @click="onSubmit">search</el-button>
           </el-form-item>
         </el-form>
       
-    </el-menu-item>
+    </el-row>
     
     
   </el-menu>
@@ -55,21 +55,35 @@
 
 import { onBeforeMount, onMounted, ref } from 'vue';
 import { reactive } from 'vue';
-
+import { ElMessage } from 'element-plus';
+import { useRoute,useRouter } from 'vue-router';
 
 const char_list=["ky","sol","ba","br"];
 const formInline = reactive({
   username: '',
 })
 
+const router = useRouter();
+
 const onSubmit=()=>{
-  console.log(formInline.username);
+  
+  if(formInline.username==""||formInline.username==null){
+    ElMessage.error('you must input username')
+  }else{
+    router.push({
+      name:"UserSearchResult",
+      query:{
+        username:formInline.username
+      }
+    })
+  }
 }
 
 
 
 </script>
-<style scoped lang="css">
+
+<style scoped lang="scss">
   .el-sub-menu{
     border: 0;
     border-radius: 0;
@@ -77,4 +91,47 @@ const onSubmit=()=>{
   .el-menu{
     border:0;
   }
+  .el-form-item{
+    margin-bottom: 0;
+  }
+  .wwc_last_item:hover{
+    background-color: #811104!important;
+  }
+
+
+
+  /deep/.el-input__inner{
+    background-color: #0a0a0a;
+    border-color: #0a0a0a!important;
+    
+  }
+
+  /deep/ .el-input__wrapper{
+    background-color: #0a0a0a;
+    border-color: #0a0a0a!important;
+  }
+
+  .el-input{
+    -el-input-border:#0a0a0a;
+    
+  }
+  
+
+  .el-input:hover{
+    border-color: #0a0a0a;
+  }
+
+  .el-button{
+    background-color: #c00000;
+    border:none;
+    border-color: #0a0a0a;
+  }
+
+  .el-button:hover{
+    background-color: #680e03;
+    border-color: #0a0a0a;
+  }
+
+
+  
 </style>

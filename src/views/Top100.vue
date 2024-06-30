@@ -1,11 +1,12 @@
 <template>
-    <el-row type="flex" justify="center" align="middle" style="background-color:#c00000;height: 132px;">
+    <!-- <el-row type="flex" justify="center" align="middle" style="background-color:#c00000;height: 132px;">
         <el-col :span="24">
             <el-row type="flex" justify="center">
                 <p style="color: aqua;"><h2>TOP 100</h2></p>
             </el-row>
         </el-col>
-    </el-row>
+    </el-row> -->
+    <hero-bar title="Top 100"></hero-bar>
     <el-row>
         <el-col :span="12" :offset="1" style="margin-top: 20px;">
             <!--table-->
@@ -44,6 +45,7 @@
 import axios from 'axios';
 import { onBeforeMount, onMounted, ref } from 'vue';
 import { reactive } from 'vue';
+import HeroBar from '../components/HeroBar.vue';
 
 
 
