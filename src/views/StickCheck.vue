@@ -28,7 +28,7 @@
 <script setup>
 
 import HeroBar from '@/components/HeroBar.vue';
-import { nextTick, onMounted, reactive,ref } from 'vue';
+import { nextTick, onMounted, reactive,ref ,onUnmounted } from 'vue';
 import { useRoute,useRouter } from 'vue-router';
 
 const heroTitle=ref("STICK CHECKER")
@@ -50,9 +50,11 @@ const canvasRef = ref(null);
 
 const isstillAlive=ref(false);
 
+let intervalId = null;
 
 const drawInitCircle=()=>{
     const canvas = canvasRef.value;
+    if(canvas == null){return}
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const circles = [
@@ -103,8 +105,13 @@ const drawInitCircle=()=>{
     ctx.closePath();
 }
 
+function stopPollingGamePad() {
+    clearInterval(intervalId);
+}
+
 const reDrawHitbox=()=>{
     const canvas = canvasRef.value;
+    if(canvas == null){return}
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const circles = [
@@ -211,11 +218,15 @@ const initGamepadStatus = () => {
 
 onMounted(()=>{
 
-    setInterval(()=>{
+    intervalId = setInterval(()=>{
         initGamepadStatus()
     },16)
     drawInitCircle()
 })
+
+onUnmounted(() => {
+      stopPollingGamePad();
+});
 
 const changeStatus=()=>{
     isRotating.value=!isRotating.value;
@@ -248,6 +259,7 @@ const changeStatus=()=>{
     border: 1px solid ;
     border-color: aqua;
     border-radius: 10px;
+    margin-top: 10px;
 }
 
 </style>
