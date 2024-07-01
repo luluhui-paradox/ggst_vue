@@ -28,6 +28,12 @@
       <template #title>Characters</template>
       <el-menu-item v-for="item in char_list">{{item}}</el-menu-item>
     </el-sub-menu>
+    
+    <el-menu-item index="5">
+      <router-link to="/stickCheck" style="text-decoration: none;">
+        Stick Check
+      </router-link>
+    </el-menu-item>
 
     <!--search bar-->
     <div style="flex-grow: 1;">

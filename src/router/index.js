@@ -3,6 +3,7 @@ import HelloWorld from '../components/HelloWorld.vue';
 import Top100 from '../views/Top100.vue';
 import UserDetail from '../views/UserDetail.vue';
 import UserSearchResult from '../views/UserSearchResult.vue';
+import StickCheck from '../views/StickCheck.vue';
 
 const routes = [
     {
@@ -28,6 +29,11 @@ const routes = [
         path:'/userSearchResult',
         name:'UserSearchResult',
         component:UserSearchResult
+    },
+    {
+        path:'/stickCheck',
+        name:'StickCheck',
+        component:StickCheck
     }
     
 ]
